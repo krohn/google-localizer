@@ -15,14 +15,28 @@
 
       var region = gl.options[gl.selectedIndex].value;
       var language = hl.options[hl.selectedIndex].value;
+      
+      // TODO: this chaining is not elegant
       var url = 'https://www.google.com';
       if (region > '' || language > '') url = url + '/?';
-      if (region > '') url = url + 'gl=' + region;
+      if (region > '') {
+          url = url + 'gl=' + region;
+          var textRegion = gl.options[gl.selectedIndex].text;
+      } else {
+          var textRegion = 'your region';
+      }
       if (region > '' && language > '') url = url + '&';
-      if (language > '') url = url + 'hl=' + language;
-
+      if (language > '') {
+          url = url + 'hl=' + language;
+          var textLanguage = gl.options[gl.selectedIndex].text;
+      } else {
+          var textLanguage = 'your language';
+      }
       target.text=url;
       target.href=url;
+      
+      document.getElementById("region").innerText = textRegion;
+      document.getElementById("language").innerText = textLanguage;
     }
 </script>
     <section class="section">
@@ -331,11 +345,12 @@
             </div>
             <div class="box">
                 <div class="field">
-                    <label class="label" for="target">Drag and Drop this to your bookmarks:</label>
+                    <label class="label" for="target">Drag and Drop this to your bookmarks bar:</label>
 
                     <div class="control">
                         <a href="https://www.google.com" id="target">https://www.google.com</a>
-                        <small>(This will be the Google for your region in your language.)</small>
+                        <br/><br>
+                        <small>(This ist the Google-Site for <span id="region">your region</span> in <span id="language">your language</span>.)</small>
                     </div>
                 </div>
             </div>
