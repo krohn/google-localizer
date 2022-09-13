@@ -12,6 +12,7 @@
     let gl = document.getElementById("gl");
     let hl = document.getElementById("hl");
     let spanTarget = document.getElementById("target");
+    let spanCustomSearch = document.getElementById("customsearch");
     let spanRegion = document.getElementById("region");
     let spanLanguage = document.getElementById("language");
     let region = gl.options[gl.selectedIndex].value;
@@ -19,10 +20,13 @@
     let nameRegion;
     let nameLanguage;
 
-    let urlBase = 'https://www.google.com';
-    let urlGlue1 = '';
+    let urlSearchBase = 'https://www.google.com/';
+    let urlSearchGlue1 = '';
+    let urlSearchGlue2 = '';
+    let urlCustomBase =  'https://www.google.com/?q=%s'
+    let urlCustomGlue1 = '';
+    let urlCustomGlue2 = '';
     let urlRegion = '';
-    let urlGlue2 = '';
     let urlLanguage = '';
 
     if (region > '') {
@@ -38,16 +42,20 @@
       nameLanguage = 'your language';
     }
     if (region > '' || language > '') {
-      urlGlue1 = '/?';
+      urlSearchGlue1 = '?';
+      urlCustomGlue1 = '&';
     }
     if (region > '' && language > '') {
-      urlGlue2 = '&';
+      urlSearchGlue2 = '&';
+      urlCustomGlue2 = '&';
     }
 
-    let url = urlBase + urlGlue1 + urlRegion + urlGlue2 + urlLanguage;
+    let urlSearch = urlSearchBase + urlSearchGlue1 + urlRegion + urlSearchGlue2 + urlLanguage;
+    let urlCustom = urlCustomBase + urlCustomGlue1 + urlRegion + urlCustomGlue2 + urlLanguage;
 
-    spanTarget.text = url;
-    spanTarget.href = url;
+    spanTarget.text = spanTarget.href = urlSearch;
+    spanCustomSearch.innerText = urlCustom;
+
     spanRegion.innerText = nameRegion;
     spanLanguage.innerText = nameLanguage;
   }
@@ -72,10 +80,32 @@
     }
   }
 
+  copyme = (texttocopy) => {
+    let tempText = document.createElement("input");
+    tempText.value = texttocopy.value;
+    document.body.appendChild(tempText);
+    tempText.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempText);
+
+    texttocopy.value = 'copied to clipboard';
+    setTimeout (() => texttocopy.value = tempText.value, 2000)
+
+
+  }
+
+  confirmation = (icon) => {
+    document.getElementById(icon).name = 'checkmark-circle';
+    setTimeout (() => document.getElementById(icon).name = 'clipboard-outline', 2000)
+
+  }
+
 </script>
 <section class="section">
     <div class="container">
-        <h1 class="title is-justify-content-left">Google Localizer</h1>
+        <h1 class="title is-justify-content-left">
+            Localizer for Google
+        </h1>
 
         <div class="block">
             <p>
@@ -83,6 +113,11 @@
                 Set your language and region settings here and save the URL in your bookmarks (or as a startpage) to
                 have local result at hand.
             </p>
+        </div>
+
+
+        <div class="panel-heading has-background-info has-text-white">
+            1. Select your region/country and your language
         </div>
         <div class="box">
             <div class="columns">
@@ -377,25 +412,105 @@
                 </div>
             </div>
         </div>
-        <div class="box">
-            <div class="field">
-                <label class="label" for="target">Drag and Drop this to your bookmarks bar:</label>
 
-                <div class="control">
-                    <a href="https://www.google.com" id="target">https://www.google.com</a>
-                    <br/>
-                    <small>(This ist the Google-Site for <span id="region">your region</span> in <span id="language">your language</span>.)</small>
+        <div class="panel-heading has-background-info has-text-white">
+            2. Drag and drop this to your bookmarks bar
+        </div>
+        <div class="panel-box mb-5">
+            <div class="box">
+                <div class="field">
+                    <label class="label" for="target">Really, just drag and drop this to your bookmarks bar:</label>
+                    <small>(It's the Google site for <span id="region">your region</span> in <span id="language">your language</span>.)</small>
+                    <div class="control">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <a class="input has-text-weight-bold has-background-light"
+                                   id="target"
+                                   href="https://www.google.com"
+                                   readonly
+                                   target="_blank"
+                                   title="Drag and drop me to the bookmarks bar">
+                                    https://www.google.com
+                                </a>
+                                <span class="icon is-small is-left has-text-grey">
+                                  <ion-icon name="bookmark-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="block"><small>
-            <strong>Disclaimer</strong><br/>This is a five-min-experiment, done in my spare time. It comes "as is"
-            without any warranty. Usage on own risk. It may disappear without announcement.
-            If it does not work for you, try setting your preferences on <a href="https://www.google.com/preferences">https://www.google.com/preferences</a>.
-        </small>
+        <div class="panel-heading has-background-grey has-text-white">
+            3. (Optional) The tricky part: How to set your default custom search engine (in Chrome)
+        </div>
+        <div class="panel-box">
+            <div class="box">
+                <ol class="mx-5">
+                    <li class="mb-3">Open the following in a new tab like an URL in Chrome
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input type="text" class="input has-background-light" readonly onclick="confirmation('step1');copyme(this)" value="chrome://settings/searchEngines" />
+                                <span class="icon is-small is-left has-text-grey">
+                                  <ion-icon id="step1" name="clipboard-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="mb-3">Click on "Manage search engines" (Suchmaschinen und die Website verwalten)</li>
+                    <li class="mb-3">Near "Other search engines" (Websitesuche) klick on "Add" (Hinzufügen)</li>
+                    <li class="mb-3">
+                        <ul>
+                            <li class="mb-3">In the popup at "Search Engine" (Suchmaschine) enter
+                                <div class="field">
+                                    <p class="control has-icons-left">
+                                        <input type="text" class="input has-background-light" readonly onclick="confirmation('step2');copyme(this)" value="My Google" />
+                                        <span class="icon is-small is-left has-text-grey">
+                                          <ion-icon id="step2" name="clipboard-outline"></ion-icon>
+                                        </span>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="mb-3">As keyword (Kürzel) enter
+                                <div class="field">
+                                    <p class="control has-icons-left">
+                                        <input type="text" class="input has-background-light" readonly onclick="confirmation('step3');copyme(this)" value="!g" />
+                                        <span class="icon is-small is-left has-text-grey">
+                                          <ion-icon id="step3" name="clipboard-outline"></ion-icon>
+                                        </span>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="mb-3">and at "URL with %s in place of query" (URL mit %s statt Suchanfrage) enter
+                                <div class="field">
+                                    <p class="control has-icons-left">
+                                        <input type="text" id="customsearch" class="input has-background-light" readonly onclick="confirmation('step4');copyme(this)" value="https://www.google.com/?q=%s" />
+                                        <span class="icon is-small is-left has-text-grey">
+                                          <ion-icon id="step4" name="clipboard-outline"></ion-icon>
+                                        </span>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="mb-3">Then click "Add" (Hinzufügen)</li>
+                    <li class="mb-3">The last step will make this your default search engine: In the "My Google"-Row click the three dots and then click the "Set as default" (Als Standard festlegen)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="block mt-5">
+            <small>
+                <strong>Disclaimer</strong>: This is a five-minute-experiment, done in my spare time. It comes "as is" without any warranty.
+                Usage on own risk. It may disappear without announcement.
+                If it does not work for you, try setting your preferences using <a href="https://www.google.com/preferences">https://www.google.com/preferences</a>.
+            </small>
         </div>
     </div>
 </section>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
