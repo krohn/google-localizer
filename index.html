@@ -23,7 +23,7 @@
     let urlSearchBase = 'https://www.google.com/';
     let urlSearchGlue1 = '';
     let urlSearchGlue2 = '';
-    let urlCustomBase =  'https://www.google.com/?q=%s'
+    let urlCustomBase = 'https://www.google.com/?q=%s';
     let urlCustomGlue1 = '';
     let urlCustomGlue2 = '';
     let urlRegion = '';
@@ -89,15 +89,12 @@
     document.body.removeChild(tempText);
 
     texttocopy.value = 'copied to clipboard';
-    setTimeout (() => texttocopy.value = tempText.value, 2000)
-
-
+    setTimeout(() => texttocopy.value = tempText.value, 2000)
   }
 
   confirmation = (icon) => {
     document.getElementById(icon).name = 'checkmark-circle';
-    setTimeout (() => document.getElementById(icon).name = 'clipboard-outline', 2000)
-
+    setTimeout(() => document.getElementById(icon).name = 'clipboard-outline', 2000)
   }
 
 </script>
@@ -114,7 +111,6 @@
                 have local result at hand.
             </p>
         </div>
-
 
         <div class="panel-heading has-background-info has-text-white">
             Build a bookmarkable link for your region and language. Three easy steps:
@@ -367,7 +363,7 @@
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column is-two-fifths" >
+                    <div class="column is-two-fifths">
                         <label class="label" for="hl">2. Select your language</label>
                     </div>
                     <div class="column">
@@ -431,8 +427,8 @@
                                         https://www.google.com
                                     </a>
                                     <span class="icon is-small is-left has-text-grey">
-                                              <ion-icon name="bookmark-outline"></ion-icon>
-                                            </span>
+                                      <ion-icon name="bookmark-outline"></ion-icon>
+                                    </span>
                                 </p>
                             </div>
                         </div>
@@ -458,7 +454,9 @@
                     <div class="column">
                         <div class="field">
                             <p class="control has-icons-left">
-                                <input type="text" class="input has-background-light" readonly onclick="confirmation('step1');copyme(this)" value="chrome://settings/searchEngines" />
+                                <input type="text" class="input has-background-light" readonly
+                                       onclick="confirmation('step1');copyme(this)"
+                                       value="chrome://settings/searchEngines"/>
                                 <span class="icon is-small is-left has-text-grey">
                                   <ion-icon id="step1" name="clipboard-outline"></ion-icon>
                                 </span>
@@ -475,22 +473,19 @@
                 </div>
                 <div class="columns">
                     <div class="column">
-                        3. Near "<abbr title="Websitesuche">Other search engines</abbr>" click on "<abbr title="Hinzufügen">Add</abbr>"
+                        3. Near "<abbr title="Websitesuche">Other search engines</abbr>" click on "<abbr
+                            title="Hinzufügen">Add</abbr>"
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column ">
-                        4. In the popup...
-                    </div>
-                </div>
-                <div class="columns">
-                    <div class="column is-two-fifths pl-5">
-                        4.1. At "<abbr title="Suchmaschine">Search Engine</abbr>" enter
+                    <div class="column is-two-fifths">
+                        4.1. In the popup at "<abbr title="Suchmaschine">Search Engine</abbr>" enter
                     </div>
                     <div class="column">
                         <div class="field">
                             <p class="control has-icons-left">
-                                <input type="text" class="input has-background-light" readonly onclick="confirmation('step2');copyme(this)" value="My Google" />
+                                <input type="text" class="input has-background-light" readonly
+                                       onclick="confirmation('step2');copyme(this)" value="My Google"/>
                                 <span class="icon is-small is-left has-text-grey">
                                   <ion-icon id="step2" name="clipboard-outline"></ion-icon>
                                 </span>
@@ -499,13 +494,14 @@
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column is-two-fifths pl-5">
-                        4.2. At "<abbr title="Kürzel">Keyword</abbr>" enter
+                    <div class="column is-two-fifths">
+                        4.2. In the popup at "<abbr title="Kürzel">Keyword</abbr>" enter
                     </div>
                     <div class="column">
                         <div class="field">
                             <p class="control has-icons-left">
-                                <input type="text" class="input has-background-light" readonly onclick="confirmation('step3');copyme(this)" value="!g" />
+                                <input type="text" class="input has-background-light" readonly
+                                       onclick="confirmation('step3');copyme(this)" value="!g"/>
                                 <span class="icon is-small is-left has-text-grey">
                                   <ion-icon id="step3" name="clipboard-outline"></ion-icon>
                                 </span>
@@ -514,13 +510,16 @@
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column is-two-fifths pl-5">
-                        4.3 At "<abbr title="URL mit %s statt Suchanfrage">URL with %s in place of query</abbr>" enter
+                    <div class="column is-two-fifths">
+                        4.3 In the popup at "<abbr title="URL mit %s statt Suchanfrage">URL with %s in place of
+                        query</abbr>" enter
                     </div>
                     <div class="column">
                         <div class="field">
                             <p class="control has-icons-left">
-                                <input type="text" id="customsearch" class="input has-background-light" readonly onclick="confirmation('step4');copyme(this)" value="https://www.google.com/?q=%s" />
+                                <input type="text" id="customsearch" class="input has-background-light" readonly
+                                       onclick="confirmation('step4');copyme(this)"
+                                       value="https://www.google.com/?q=%s"/>
                                 <span class="icon is-small is-left has-text-grey">
                                   <ion-icon id="step4" name="clipboard-outline"></ion-icon>
                                 </span>
@@ -536,7 +535,8 @@
                 <div class="columns">
                     <div class="column">
                         6. The last step will make this your default search engine:
-                        In the "My Google"-Row click the three dots and then click the "<abbr title="Als Standard festlegen">Set as default</abbr>"
+                        In the "My Google"-Row click the three dots and then click the "<abbr
+                            title="Als Standard festlegen">Set as default</abbr>"
                     </div>
                 </div>
             </div>
@@ -544,9 +544,11 @@
 
         <div class="block mt-5">
             <small>
-                <strong>Disclaimer</strong>: This is a five-minute-experiment, done in my spare time. It comes "as is" without any warranty.
+                <strong>Disclaimer</strong>: This is a five-minute-experiment, done in my spare time. It comes "as is"
+                without any warranty.
                 Usage on own risk. It may disappear without announcement.
-                If it does not work for you, try setting your preferences using <a href="https://www.google.com/preferences">https://www.google.com/preferences</a>.
+                If it does not work for you, try setting your preferences using <a
+                    href="https://www.google.com/preferences">https://www.google.com/preferences</a>.
             </small>
         </div>
     </div>
