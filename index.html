@@ -54,7 +54,7 @@
     let urlCustom = urlCustomBase + urlCustomGlue1 + urlRegion + urlCustomGlue2 + urlLanguage;
 
     spanTarget.text = spanTarget.href = urlSearch;
-    spanCustomSearch.innerText = urlCustom;
+    spanCustomSearch.value = urlCustom;
 
     spanRegion.innerText = nameRegion;
     spanLanguage.innerText = nameLanguage;
@@ -447,6 +447,11 @@
         <div class="panel-box has-background-light">
             <div class="box has-background-light">
                 <div class="columns">
+                    <div class="column">
+                        0. Select region and language above, if not already done
+                    </div>
+                </div>
+                <div class="columns">
                     <div class="column is-two-fifths">
                         1. Open this in a new tab like an URL in Chrome
                     </div>
@@ -480,7 +485,7 @@
                 </div>
                 <div class="columns">
                     <div class="column is-two-fifths pl-5">
-                        4.1. At "Search Engine" (Suchmaschine) enter
+                        4.1. At "<abbr title="Suchmaschine">Search Engine</abbr>" enter
                     </div>
                     <div class="column">
                         <div class="field">
