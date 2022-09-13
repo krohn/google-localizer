@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="has-background-light">
 <head>
-    <title>Google Localizer</title>
+    <title>Localizer for Google</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -117,13 +117,15 @@
 
 
         <div class="panel-heading has-background-info has-text-white">
-            1. Select your region/country and your language
+            Build a bookmarkable link for your region and language. Three easy steps:
         </div>
-        <div class="box">
-            <div class="columns">
-                <div class="column">
-                    <div class="field">
-                        <label class="label" for="gl">Your region</label>
+        <div class="panel-box has-background-white mb-6">
+            <div class="box has-background-white">
+                <div class="columns">
+                    <div class="column is-two-fifths">
+                        <label class="label" for="gl">1. Select your region</label>
+                    </div>
+                    <div class="column">
                         <div class="select is-fullwidth">
                             <select id="gl" onChange="updateUrl()">
                                 <option value="">Please select...</option>
@@ -364,10 +366,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="column">
-                    <div class="field">
-                        <label class="label" for="hl">Your language</label>
-                        <div class="select is-fullwidth" ed>
+                <div class="columns">
+                    <div class="column is-two-fifths" >
+                        <label class="label" for="hl">2. Select your language</label>
+                    </div>
+                    <div class="column">
+                        <div class="select is-fullwidth">
                             <select id="hl" onChange="updateUrl()">
                                 <option value="">Please select...</option>
                                 <option value="ms">Bahasa Melayu</option>
@@ -410,46 +414,43 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="panel-heading has-background-info has-text-white">
-            2. Drag and drop this to your bookmarks bar
-        </div>
-        <div class="panel-box mb-5">
-            <div class="box">
-                <div class="field">
-                    <label class="label" for="target">Really, just drag and drop this to your bookmarks bar:</label>
-                    <small>(It's the Google site for <span id="region">your region</span> in <span id="language">your language</span>.)</small>
-                    <div class="control">
-                        <div class="field">
-                            <p class="control has-icons-left">
-                                <a class="input has-text-weight-bold has-background-light"
-                                   id="target"
-                                   href="https://www.google.com"
-                                   readonly
-                                   target="_blank"
-                                   title="Drag and drop me to the bookmarks bar">
-                                    https://www.google.com
-                                </a>
-                                <span class="icon is-small is-left has-text-grey">
-                                  <ion-icon name="bookmark-outline"></ion-icon>
-                                </span>
-                            </p>
+                <div class="columns">
+                    <div class="column is-two-fifths">
+                        <label class="label" for="target">3. Drag and drop this to your bookmarks bar</label>
+                    </div>
+                    <div class="column">
+                        <div class="control">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <a class="input has-text-weight-bold has-background-light"
+                                       id="target"
+                                       href="https://www.google.com"
+                                       readonly
+                                       target="_blank"
+                                       title="Drag and drop me to the bookmarks bar">
+                                        https://www.google.com
+                                    </a>
+                                    <span class="icon is-small is-left has-text-grey">
+                                              <ion-icon name="bookmark-outline"></ion-icon>
+                                            </span>
+                                </p>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="panel-heading has-background-grey has-text-white">
-            3. (Optional) The tricky part: How to set your default custom search engine (in Chrome)
+            (BETA) Set your default search engine (in Chrome)
         </div>
-        <div class="panel-box">
-            <div class="box">
-                <ol class="mx-5">
-                    <li class="mb-3">Open the following in a new tab like an URL in Chrome
+        <div class="panel-box has-background-light">
+            <div class="box has-background-light">
+                <div class="columns">
+                    <div class="column is-two-fifths">
+                        1. Open this in a new tab like an URL in Chrome
+                    </div>
+                    <div class="column">
                         <div class="field">
                             <p class="control has-icons-left">
                                 <input type="text" class="input has-background-light" readonly onclick="confirmation('step1');copyme(this)" value="chrome://settings/searchEngines" />
@@ -458,46 +459,81 @@
                                 </span>
                             </p>
                         </div>
-                    </li>
-                    <li class="mb-3">Click on "Manage search engines" (Suchmaschinen und die Website verwalten)</li>
-                    <li class="mb-3">Near "Other search engines" (Websitesuche) klick on "Add" (Hinzufügen)</li>
-                    <li class="mb-3">
-                        <ul>
-                            <li class="mb-3">In the popup at "Search Engine" (Suchmaschine) enter
-                                <div class="field">
-                                    <p class="control has-icons-left">
-                                        <input type="text" class="input has-background-light" readonly onclick="confirmation('step2');copyme(this)" value="My Google" />
-                                        <span class="icon is-small is-left has-text-grey">
-                                          <ion-icon id="step2" name="clipboard-outline"></ion-icon>
-                                        </span>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="mb-3">As keyword (Kürzel) enter
-                                <div class="field">
-                                    <p class="control has-icons-left">
-                                        <input type="text" class="input has-background-light" readonly onclick="confirmation('step3');copyme(this)" value="!g" />
-                                        <span class="icon is-small is-left has-text-grey">
-                                          <ion-icon id="step3" name="clipboard-outline"></ion-icon>
-                                        </span>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="mb-3">and at "URL with %s in place of query" (URL mit %s statt Suchanfrage) enter
-                                <div class="field">
-                                    <p class="control has-icons-left">
-                                        <input type="text" id="customsearch" class="input has-background-light" readonly onclick="confirmation('step4');copyme(this)" value="https://www.google.com/?q=%s" />
-                                        <span class="icon is-small is-left has-text-grey">
-                                          <ion-icon id="step4" name="clipboard-outline"></ion-icon>
-                                        </span>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="mb-3">Then click "Add" (Hinzufügen)</li>
-                    <li class="mb-3">The last step will make this your default search engine: In the "My Google"-Row click the three dots and then click the "Set as default" (Als Standard festlegen)</li>
-                </ol>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        2. Click on "<abbr title="Suchmaschinen und die Website verwalten">Manage search engines</abbr>"
+                    </div>
+                    <div class="column">
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        3. Near "<abbr title="Websitesuche">Other search engines</abbr>" click on "<abbr title="Hinzufügen">Add</abbr>"
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column ">
+                        4. In the popup...
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-two-fifths pl-5">
+                        4.1. At "Search Engine" (Suchmaschine) enter
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input type="text" class="input has-background-light" readonly onclick="confirmation('step2');copyme(this)" value="My Google" />
+                                <span class="icon is-small is-left has-text-grey">
+                                  <ion-icon id="step2" name="clipboard-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-two-fifths pl-5">
+                        4.2. At "<abbr title="Kürzel">Keyword</abbr>" enter
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input type="text" class="input has-background-light" readonly onclick="confirmation('step3');copyme(this)" value="!g" />
+                                <span class="icon is-small is-left has-text-grey">
+                                  <ion-icon id="step3" name="clipboard-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-two-fifths pl-5">
+                        4.3 At "<abbr title="URL mit %s statt Suchanfrage">URL with %s in place of query</abbr>" enter
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input type="text" id="customsearch" class="input has-background-light" readonly onclick="confirmation('step4');copyme(this)" value="https://www.google.com/?q=%s" />
+                                <span class="icon is-small is-left has-text-grey">
+                                  <ion-icon id="step4" name="clipboard-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        5. Click "<abbr title="Hinzufügen">Add</abbr>"
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        6. The last step will make this your default search engine:
+                        In the "My Google"-Row click the three dots and then click the "<abbr title="Als Standard festlegen">Set as default</abbr>"
+                    </div>
+                </div>
             </div>
         </div>
 
